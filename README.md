@@ -7,7 +7,7 @@ Jednoduchý digitálny darček pre Miša. Úvod → video → obrázok na stiahn
 Vlož ich do `public/media/` s presnými názvami:
 
 - `miso.mp4` — tvoje video (ideálne MP4 / H.264).
-- `majkula.jpg` — obrázok, ktorý sa po videu dá stiahnuť.
+- `majkula.png` — obrázok, ktorý sa po videu dá stiahnuť.
 - `shark.mp3` — voliteľný zvuk žraloka / Jaws, ktorý máš právo použiť. Bez súboru stránka prehrá vlastný krátky napínavý zvuk.
 
 Zvuk sa spustí až po kliknutí, aby fungoval aj na telefóne. Úvodný zvuk sa pri prehrávaní videa zastaví, aby bolo počuť zvuk videa. Chýbajúce video a obrázok majú pripravenú náhradu.

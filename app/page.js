@@ -16,7 +16,7 @@ export default function Home() {
   useEffect(() => {
     const picture = new Image();
     picture.onload = () => setImageReady(true);
-    picture.src = '/media/majkula.jpg';
+    picture.src = '/media/majkula.png';
     return () => { synth.current?.close(); clearTimeout(revealTimer.current); };
   }, []);
 
@@ -85,8 +85,8 @@ export default function Home() {
       </section>}
 
       {stage === 'gift' && <section className="reveal gift">
-        <div className="picture-frame">{imageReady ? <img src="/media/majkula.jpg" alt="Majkula — Mišov darček na pamiatku" /> : <div className="placeholder" role="status" aria-label="Obrázok už čoskoro"><span className="mini-fin">▲</span></div>}</div>
-        {imageReady && <a className="primary" href="/media/majkula.jpg" download="majkula.jpg" aria-label="Stiahnuť Majkulu"><span>↓</span></a>}
+        <div className="picture-frame">{imageReady ? <img src="/media/majkula.png" alt="Majkula — Mišov darček na pamiatku" /> : <div className="placeholder" role="status" aria-label="Obrázok už čoskoro"><span className="mini-fin">▲</span></div>}</div>
+        {imageReady && <a className="primary" href="/media/majkula.png" download="majkula.png" aria-label="Stiahnuť Majkulu"><span>↓</span></a>}
         <button className="text-button" aria-label="Prehrať znovu" onClick={() => { stopSound(); setStage('intro'); }}><span>↺</span></button>
       </section>}
     </main>
