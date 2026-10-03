@@ -7,7 +7,6 @@ export default function Home() {
   const [muted, setMuted] = useState(false);
   const [missing, setMissing] = useState(false);
   const [imageReady, setImageReady] = useState(false);
-  const [audioReady, setAudioReady] = useState(false);
   const video = useRef(null);
   const sound = useRef(null);
   const synth = useRef(null);
@@ -28,7 +27,14 @@ export default function Home() {
 
   function startSound() {
     if (muted) return;
-    if (audioReady) { sound.current?.play().catch(() => {}); return; }
+    if (sound.current) {
+      sound.current.currentTime = 0;
+      sound.current.play().catch(() => {});
+    }
+  }
+
+  function startFallbackSound() {
+    if (muted || stage !== 'diving') return;
     // Original underwater suspense sound; replace with your own audio file.
     const AudioContext = window.AudioContext || window.webkitAudioContext;
     if (!AudioContext) return;
@@ -69,7 +75,7 @@ export default function Home() {
     <main>
       <div className="grain" aria-hidden="true" />
       <header><a className="brand" href="/" aria-label="Majkula"><span>▲</span></a><button className="sound" onClick={toggleSound} aria-label={muted ? 'Zapnúť zvuk' : 'Vypnúť zvuk'}>{muted ? '🔇' : '🔊'}</button></header>
-      <audio ref={sound} src="/media/shark.mp3" preload="auto" onCanPlay={() => setAudioReady(true)} />
+      <audio ref={sound} src="/media/fronbondi_skegs-sfx-custom-version-of-jaws-theme-cinematic-sound-effect-461780.mp3" preload="auto" onError={startFallbackSound} />
 
       {(stage === 'intro' || stage === 'diving') && <section className="intro">
         <div className="fin-scene" aria-hidden="true"><div className="fin" /><div className="ripple one" /><div className="ripple two" /><div className="ripple three" /></div>
