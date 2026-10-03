@@ -74,26 +74,26 @@ export default function Home() {
   return (
     <main>
       <div className="grain" aria-hidden="true" />
-      <header><a className="brand" href="/" aria-label="Majkula"><span>▲</span></a><button className="sound" onClick={toggleSound} aria-label={muted ? 'Zapnúť zvuk' : 'Vypnúť zvuk'}>{muted ? '🔇' : '🔊'}</button></header>
+      <header><a className="brand" href="/" aria-label="Majkula"><span>▲</span></a><button className="sound" onClick={toggleSound} aria-label={muted ? 'Unmute sound' : 'Mute sound'}>{muted ? '🔇' : '🔊'}</button></header>
       <audio ref={sound} src="/media/fronbondi_skegs-sfx-custom-version-of-jaws-theme-cinematic-sound-effect-461780.mp3" preload="auto" onError={startFallbackSound} />
 
       {(stage === 'intro' || stage === 'diving') && <section className="intro">
         <div className="fin-scene" aria-hidden="true"><div className="fin" /><div className="ripple one" /><div className="ripple two" /><div className="ripple three" /></div>
         <h1>Watch out<br />for your <em>beer.</em></h1>
-        <button className="primary" style={{ marginTop: 36 }} onClick={begin} disabled={stage === 'diving'} aria-label="Prehrať prekvapenie"><span>{stage === 'diving' ? '≈' : '▶'}</span></button>
+        <button className="primary" style={{ marginTop: 36 }} onClick={begin} disabled={stage === 'diving'} aria-label="Play the surprise"><span>{stage === 'diving' ? '≈' : '▶'}</span></button>
       </section>}
 
       {stage === 'video' && <section className="reveal">
         <div className="video-frame">
-          {!missing ? <video ref={video} src="/media/miso.mp4" controls autoPlay playsInline muted={muted} onPlay={stopSound} onEnded={finish} onError={() => setMissing(true)} /> : <div className="placeholder" role="status" aria-label="Video už čoskoro"><span>▶</span></div>}
+          {!missing ? <video ref={video} src="/media/miso.mp4" controls autoPlay playsInline muted={muted} onPlay={stopSound} onEnded={finish} onError={() => setMissing(true)} /> : <div className="placeholder" role="status" aria-label="Video coming soon"><span>▶</span></div>}
         </div>
-        <button className="text-button" onClick={finish} aria-label="Pozrieť darček"><span>→</span></button>
+        <button className="text-button" onClick={finish} aria-label="View your gift"><span>→</span></button>
       </section>}
 
       {stage === 'gift' && <section className="reveal gift">
-        <div className="picture-frame">{imageReady ? <img src="/media/majkula.png" alt="Majkula — Mišov darček na pamiatku" /> : <div className="placeholder" role="status" aria-label="Obrázok už čoskoro"><span className="mini-fin">▲</span></div>}</div>
-        {imageReady && <a className="primary" href="/media/majkula.png" download="majkula.png" aria-label="Stiahnuť Majkulu"><span>↓</span></a>}
-        <button className="text-button" aria-label="Prehrať znovu" onClick={() => { stopSound(); setStage('intro'); }}><span>↺</span></button>
+        <div className="picture-frame">{imageReady ? <img src="/media/majkula.png" alt="Majkula — a keepsake gift for Mišo" /> : <div className="placeholder" role="status" aria-label="Image coming soon"><span className="mini-fin">▲</span></div>}</div>
+        {imageReady && <a className="primary" href="/media/majkula.png" download="majkula.png" aria-label="Download Majkula"><span>↓</span></a>}
+        <button className="text-button" aria-label="Play again" onClick={() => { stopSound(); setStage('intro'); }}><span>↺</span></button>
       </section>}
     </main>
   );
